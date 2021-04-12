@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise-test</title>
+</head>
+
+<body>
+  <h2>promise-test</h2>
+  <script src="./Promise.js"></script>
+  <script>
+    // setTimeout(() => console.log('setTimeout'))
+    // console.log('************script start************')
+    // const promise1 = new Promise((resolve, reject) => {
+    //   console.log('promise内部')
+    //   // throw 'err'
+    //   // setTimeout(() => {
+    //   //   throw 'err'
+    //   // }, 500)
+    //   reject('err')
+    //   console.log(222)
+    // })
+    // promise1.then(res => {
+    //   console.log(res)
+    //   return 456
+    // },
+    // ).then(console.log, console.warn).catch(console.error)
+    // const promise2 = Promise.resolve('Promise.resolve123')
+    // promise2.then(console.log)
+    // console.log('************script end************')
+
+    const promise1 = new Promise((resolve, reject) => setTimeout(() => resolve(5000), 5000))
+    const promise2 = new Promise((resolve, reject) => setTimeout(() => reject(3000), 3000))
+    const promise3 = new Promise((resolve, reject) => setTimeout(() => resolve(800), 800))
+    Promise.race([promise1, promise2, promise3]).then(console.log, console.warn)
+    Promise.all([promise1, promise2, promise3]).then(console.log, console.warn)
+  </script>
+</body>
+
+</html>
